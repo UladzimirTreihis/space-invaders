@@ -23,7 +23,12 @@ def reset_player_X(player_X):
         player_X = 750
     return player_X
 
-
+'''
+- x1, x2, y1, y2 are of the type 'float' and the function returns a boolean output.
+- The function 1) calculates the Eucledian distance between the bullet and the object 
+               2) checks if the eucledian distance is less than 50
+               3) Returns true or false acorrdingly
+'''
 def isCollision(x1, x2, y1, y2):
     '''
     - x1; x2; y1;y 2 are of the type float. The function returns a boolean type. 
@@ -53,8 +58,8 @@ def show_bullet(bullet):
 
 
 def event_action(event, bullet, player):
+    running = True
     if event.type == pygame.QUIT:
-        global running
         running = False
 
     # Controling the player movement from the arrow keys
@@ -67,7 +72,7 @@ def event_action(event, bullet, player):
             # Fixing the change of direction of bullet
             bullet = fix_bullet_direction(bullet, player)
 
-    return bullet, player
+    return bullet, player, running
 
 
 def fix_bullet_direction(bullet, player):
@@ -198,7 +203,7 @@ if __name__ == "__main__":
         # RGB
         screen.fill((0, 0, 0))
         for event in pygame.event.get():
-            bullet, player = event_action(event, bullet, player)
+            bullet, player, running = event_action(event, bullet, player)
 
         # updating the invaders x-coordinate
         invaders = update_invaders_x(invaders)
@@ -241,3 +246,16 @@ if __name__ == "__main__":
         show_player(player)
         show_score(score, scoreX, scoreY)
         pygame.display.update()
+        
+        
+        
+       
+#   '''
+#   Test for the iscollision function:
+  
+#   def test(num : int, msg : str, func_out, exp_out) :
+#     if func_out == exp_out :
+#         print(f"+ TEST [{num}] PASSED")
+#     else :
+#         print(f"- TEST [{num}] FAILED; {msg}")
+#   '''
