@@ -25,6 +25,12 @@ def reset_player_X(player_X):
 
 
 def isCollision(x1, x2, y1, y2):
+    '''
+    - x1; x2; y1;y 2 are of the type float. The function returns a boolean type. 
+    - The purpose of this function is to see whether the bullet is close enough to the object for it to classify as a collision. 
+    - According to the function if the eucledian distance between the bullet and the object is lesser than or equal to 50; we can consider it a collision
+
+    '''
     distance = math.sqrt((math.pow(x1 - x2, 2)) + (math.pow(y1 - y2, 2)))
     if distance <= 50:
         return True
