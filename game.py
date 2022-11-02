@@ -46,6 +46,17 @@ def show_invader(invader):
 
 
 def show_bullet(bullet):
+    """
+    shows the bullet image on screen
+
+    Parameters:
+    ----
+    bullet object
+
+    Return:
+    ----
+    bullet object with updated state
+    """
     screen.blit(bulletImage, (bullet["x"], bullet["y"]))
     bullet["state"] = "fire"
     return bullet
@@ -83,6 +94,18 @@ def play_sound(dir):
 
 
 def update_invaders_x(invaders):
+    """
+    Updates the x-coordinates of the invader by adding
+    the x_change
+
+    Parameters:
+    ----
+    invader object
+
+    Return:
+    ----
+    invader object with updated x coordinate
+    """
     for invader in invaders:
         invader["x"] += invader["x_change"]
     return invaders
@@ -109,6 +132,18 @@ def game_over(invaders, invader, player):
 
 
 def remove_invaders(invaders):
+    """
+    Removes the invader object by changing the y value
+    of the invader objects
+
+    Parameters:
+    ----
+    invader object
+
+    Return:
+    ----
+    invader object with the updated y coordinate
+    """
     for invader_ in invaders:
         invader_["y"] = 2000
         play_sound('data/explosion.wav')
