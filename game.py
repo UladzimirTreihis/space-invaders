@@ -10,6 +10,7 @@ screen_height = 600
 screen = pygame.display.set_mode((screen_width, screen_height))
 
 bulletImage = pygame.image.load('data/bullet.png')
+playerImage = pygame.image.load('data/spaceship.png')
 
 mixer.init()
 mixer.music.load('data/background.wav')
@@ -61,6 +62,24 @@ def reset_player_X(player_X: float) -> float:
 
 
 def isCollision(x1, x2, y1, y2):
+    """
+    Checks the distance between two points, and seeing if they are close enough \
+        to collide based on if the euclidean distance is less than 50
+    
+    Parameters:
+    ----
+    x1, y1 <float>: initial coordinates of invader
+    x2, y2 <float>: updated coordinates of invader
+    distance <float>: distance required for collision
+
+    Return:
+    ----
+    isCollision <bool>: True or False
+
+    Implementation:
+   ----
+    use path.pow to calculate the euclidean distance
+    """
     distance = math.sqrt((math.pow(x1 - x2, 2)) + (math.pow(y1 - y2, 2)))
     if distance <= 50:
         return True
@@ -199,6 +218,22 @@ def remove_invaders(invaders):
 
 
 def move_next_line(invader):
+    """
+    Moves direction of invader when it approaches the edges of the screen.
+    Invader moves down by 1 in y-direction and flips in x-direction.
+
+    Parameters:
+    -----
+    invader <dict[str, float]>: invader current x and y-coordinates
+
+    Return:
+    ----
+    invader <dict[str, float]>: invader updated x and y-coordinates
+
+    Implementation:
+    ----
+    invader["x"] and invader ["y"] must be used
+    """
     if invader["x"] >= 735 or invader["x"] <= 0:
         invader["x_change"] *= -1
         invader["y"] += invader["y_change"]
@@ -206,6 +241,26 @@ def move_next_line(invader):
 
 
 def update_score_and_invaders(score, bullet, invader):
+    """
+    Updates the score and number of invaders upon collision of bullet with invader
+    
+    Parameters:
+    ----
+    score <int>: score
+    bullet <dict[str, int]>: bullet associated data dictionary
+    bullet["state"] <str>: bullet state
+    invader <dict[str, float]>: invader associated data dictionary
+
+    Return:
+    ----
+    score <int>: updated score
+    bullet <dict[str, int]>: bullet associated data dictionary
+    invader <dict[str, float]>: invader associated data dictionary
+
+    Implementation:
+    ----
+    use bullet["y"], bullet["state"], invader["x"], invader["y"] and invader["x_change"]
+    """
     score += 1
     bullet["y"] = 600
     bullet["state"] = "rest"
