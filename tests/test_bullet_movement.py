@@ -2,7 +2,7 @@ from game import bullet_movement, show_bullet
 
 
 def test_bullet_movement():
-
+    # Generate sample objects
     bullet1 = {
         "x": 45,
         "y": 0,
