@@ -1,4 +1,3 @@
-import pygame
 from game import show_player
 
 def test_show_player():

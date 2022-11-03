@@ -1,5 +1,3 @@
-import pytest
-
 from game import game_over, remove_invaders
 
 def test_game_over():

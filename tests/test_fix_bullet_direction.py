@@ -1,4 +1,3 @@
-import pytest
 from game import fix_bullet_direction
 
 
