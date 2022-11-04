@@ -162,16 +162,16 @@ def event_action(event: object,
         * bullet["state"] <str>: bullet state
 
     player <dict[str, float]>: player associated data dictionary
-    
+
     Return:
     ----
     tuple(bullet, player, running)
 
     bullet <dict[str, float]>: bullet associated data dictionary
         * bullet["state"] <str>: bullet state
-    
+
     player <dict[str, float]>: player associated data dictionary
-    
+
     running <bool>: indicator whether to keep running the loop
     """
     running = True
@@ -193,24 +193,24 @@ def event_action(event: object,
 
 def fix_bullet_direction(bullet, player):
     """
-    Given the x coordinate of the player (value), shoots the bullet from that position
-    
+    Given the x coordinate of the player (value),
+    shoots the bullet from that position
+
     Parameters:
     ----
     event <class 'Event'>: pygame.event.Event(), a representation of a key.
-    
+
     bullet <dict[str, float]>: bullet associated data dictionary
         * bullet["state"] <str>: bullet state
-    
+
     player <dict[str, float]>: player associated data dictionary
-    
+
     Return:
     ----
 
     bullet <dict[str, float]>: bullet associated data dictionary
         * bullet["state"] <str>: bullet state
-  
-    """    
+    """
     if bullet["state"] == "rest":
         bullet["x"] = player["x"]
         bullet = show_bullet(bullet)
@@ -258,7 +258,7 @@ def bullet_movement(bullet: dict[str, float]) -> dict[str, float]:
     Parameters:
     ----
     bullet <dict[str, int]>: bullet associated data dictionary
-    
+
     Return:
     ----
     bullet <dict[str, int]>: bullet associated data dictionary
@@ -274,21 +274,21 @@ def bullet_movement(bullet: dict[str, float]) -> dict[str, float]:
 
 def game_over(invaders, invader, player):
     """
-    Checks whether the game over condition has passed and updates the objects otherwise
-    
+    Checks whether the game over condition has passed
+    and updates the objects otherwise
+
     Parameters:
     ----
     invaders <list[dict[str, float]]>: the list of invaders ditionaries
     invader <dict[str, float]>: invader associated data dictionary
     player <dict[str, float]>: player associated data dictionary
-    
+
     Return:
     ----
     invaders <list[dict[str, float]]>: the list of invaders ditionaries
     invader <dict[str, float]>: invader associated data dictionary
     is_game_over <bool>: boolean indicator whether the player has lost
-  
-    """      
+    """
     is_game_over = False
     if invader["y"] >= 450:
         if abs(player["x"]-invader["x"]) < 80:
@@ -341,8 +341,9 @@ def move_next_line(invader):
 
 def update_score_and_invaders(score, bullet, invader):
     """
-    Updates the score and number of invaders upon collision of bullet with invader
-    
+    Updates the score and number of invaders
+    upon collision of bullet with invader
+
     Parameters:
     ----
     score <int>: score
@@ -355,10 +356,6 @@ def update_score_and_invaders(score, bullet, invader):
     score <int>: updated score
     bullet <dict[str, int]>: bullet associated data dictionary
     invader <dict[str, float]>: invader associated data dictionary
-
-    Implementation:
-    ----
-    use bullet["y"], bullet["state"], invader["x"], invader["y"] and invader["x_change"]
     """
     score += 1
     bullet["y"] = 600
@@ -477,16 +474,3 @@ if __name__ == "__main__":
         show_player(player)
         show_score(score, scoreX, scoreY)
         pygame.display.update()
-        
-        
-        
-       
-#   '''
-#   Test for the iscollision function:
-  
-#   def test(num : int, msg : str, func_out, exp_out) :
-#     if func_out == exp_out :
-#         print(f"+ TEST [{num}] PASSED")
-#     else :
-#         print(f"- TEST [{num}] FAILED; {msg}")
-#   '''
