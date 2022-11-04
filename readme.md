@@ -11,6 +11,9 @@
     python -m venv .venv            (it will create you a virtual environment)
     source .venv/bin/activate       (it will activate your virtual environment)
     pip install -r requirements.txt (it will install necessary packages)
+    python game.py                  (it will run the game)
+    python -m pytest                (it will run the tests)
+    python -m pytest --cov          (it will run the tests and show the test coverage)
 
 + Extract the file and run the game by following any of the following mentioned methods in [Running](##Running) section
 

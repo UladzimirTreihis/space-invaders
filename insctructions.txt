@@ -1,0 +1,46 @@
+# YSC2221 Group Assignment: The Space Invaders Game
+#
+# Name: Uladzimir Treihis, 
+
+# Resources used:
+# https://www.geeksforgeeks.org/building-space-invaders-using-pygame-python/
+
+# What is described in the original image?: Marina Bay Area
+
+################
+# Install libraries `pip3 install -r requirements.txt`
+# You can run this file as `python ysc2221_assignment2_xxx.py`
+################
+
+
+How to run?
+
+0. Navitage your terminal to the root folder \space-invaders
+
+1. You may want to create a vertual environment to install necessary libraries:
+In the root folder run:
+    python -m venv .venv
+
+2. You now want to activate it:
+    source .venv/bin/activate
+
+3. Now install all libraries (make sure you have pip installed already):
+    pip install -r requirements.txt
+
+4. In the root folder you can run the game by 
+    python game.py
+
+5. To test the game depending on your machine you may try either 
+    python -m pytest
+   or 
+    pytest
+
+6. To see the test coverage:
+    python -m pytest --cov 
+   or 
+    pytest --cov
+
+
+
+
+
