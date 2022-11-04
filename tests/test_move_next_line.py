@@ -1,5 +1,6 @@
 from game import move_next_line
 
+
 def test_move_next_line():
     def genInvader(x, y, x_change, y_change):
         return {

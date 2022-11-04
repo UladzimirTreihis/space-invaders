@@ -1,4 +1,4 @@
-from game import bullet_movement, show_bullet
+from game import bullet_movement
 
 
 def test_bullet_movement():
@@ -32,4 +32,3 @@ def test_bullet_movement():
     assert bullet_movement(bullet3)["y"] == 600
     assert bullet_movement(bullet3)["state"] == "rest"
     assert bullet_movement(bullet4)["y"] == 497
-

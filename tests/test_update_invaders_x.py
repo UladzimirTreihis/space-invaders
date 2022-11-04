@@ -1,5 +1,6 @@
 from game import update_invaders_x
 
+
 def test_update_invaders():
     def genInvader(x, y, x_change, y_change):
         return {

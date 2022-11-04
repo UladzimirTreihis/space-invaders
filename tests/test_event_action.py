@@ -1,5 +1,4 @@
 from game import event_action, fix_bullet_direction
-import pytest
 
 running = True
 
@@ -44,7 +43,7 @@ def test_event_action():
     assert bullet1_return == bullet1
     assert player1_return["x"] == 370 - 5
     assert running
-    
+
     bullet1_return, player1_return, running = event_action(
         event3,
         bullet1,

@@ -1,8 +1,9 @@
-from game import game_over, remove_invaders
+from game import game_over
+
 
 def test_game_over():
     player = {
-        "x": 150, 
+        "x": 150,
         "y": 523
     }
     new_invader = {
@@ -24,4 +25,4 @@ def test_game_over():
     for invader in game_object[0]:
         assert invader["y"] == 2000
     assert game_object[1]["y"] == 500
-    assert game_object[2] == True
+    assert game_object[2]

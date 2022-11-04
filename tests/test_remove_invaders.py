@@ -1,4 +1,5 @@
-from game import remove_invaders, play_sound
+from game import remove_invaders
+
 
 def test_remove_invaders():
     invader1 = {

@@ -1,8 +1,10 @@
-from multiprocessing import Event
 import pygame
 import random
 import math
 from pygame import mixer
+
+
+# INVOKING MODULES FOR TESTING IMPORT #
 
 pygame.init()
 screen_width = 800
@@ -21,23 +23,37 @@ game_over_font = pygame.font.Font('freesansbold.ttf', 64)
 # FUNCTIONS #
 
 def show_score(score, x, y):
+    """
+    Display score.
+
+    Parameters:
+    ----
+    score <int>: The score value
+    x <int>: x-coordinate of display
+    y <int>: y-coordinate of display
+
+    Return:
+    ----
+    None
+    """
     score_text = font.render("Points: " + str(score), True, (255, 255, 255))
     screen.blit(score_text, (x, y))
 
-    
+
 def game_over_display():
     """
-    Display game-over when the player has lesser than or equal to an 80 point difference from the invader and the invader is above 450 points.
+    Display game-over when the player has lesser than or equal to
+    an 80 point difference in distance from the invader and
+    the invader is above 450 points of distance.
 
     Parameters:
     ----
     N.A
 
-    Display:
+    Return:
     ----
-    "GAME OVER" <string> in defined font and at approriate position 
-    
-    """  
+    None
+    """
     game_over_text = game_over_font.render("GAME OVER", True, (255, 255, 255))
     screen.blit(game_over_text, (190, 250))
 
@@ -63,9 +79,9 @@ def reset_player_X(player_X: float) -> float:
 
 def isCollision(x1, x2, y1, y2):
     """
-    Checks the distance between two points, and seeing if they are close enough \
-        to collide based on if the euclidean distance is less than 50
-    
+    Checks the distance between two points, and seeing if they are close
+    enough to collide based on if the euclidean distance is less than 50
+
     Parameters:
     ----
     x1, y1 <float>: initial coordinates of invader
@@ -75,10 +91,6 @@ def isCollision(x1, x2, y1, y2):
     Return:
     ----
     isCollision <bool>: True or False
-
-    Implementation:
-   ----
-    use path.pow to calculate the euclidean distance
     """
     distance = math.sqrt((math.pow(x1 - x2, 2)) + (math.pow(y1 - y2, 2)))
     if distance <= 50:
@@ -88,32 +100,67 @@ def isCollision(x1, x2, y1, y2):
 
 
 def show_player(player):
+    """
+    Display player image on the screen.
+
+    Parameters:
+    ----
+    player <dict[str, float]>: player associated data dictionary.
+
+    Return:
+    ----
+    None
+    """
     screen.blit(playerImage, (player["x"] - 16, player["y"] + 10))
 
 
 def show_invader(invader):
+    """
+    Display invader image on the screen.
+
+    Parameters:
+    ----
+    invader <dict[str, float]>: invader associated data dictionary.
+
+    Return:
+    ----
+    None
+    """
     screen.blit(invaderImage, (invader["x"], invader["y"]))
 
 
 def show_bullet(bullet):
+    """
+    Display bullet image on the screen.
+
+    Parameters:
+    ----
+    bullet <dict[str, float]>: bullet associated data dictionary.
+        * bullet["state"] <str>: bullet state
+
+    Return:
+    ----
+    None
+    """
     screen.blit(bulletImage, (bullet["x"], bullet["y"]))
     bullet["state"] = "fire"
     return bullet
 
 
 def event_action(event: object,
-                bullet: dict[str, float],
-                player: dict[str, float]) -> \
-                tuple[dict[str, float], dict[str, float], bool]:
+                 bullet: dict[str, float],
+                 player: dict[str, float]) -> \
+                 tuple[dict[str, float], dict[str, float], bool]:
     """
     Given an event (key), updates the player and bullet dictionary
 
     Parameters:
     ----
     event <class 'Event'>: pygame.event.Event(), a representation of a key.
-    
+
     bullet <dict[str, float]>: bullet associated data dictionary
-    
+        * bullet["state"] <str>: bullet state
+
     player <dict[str, float]>: player associated data dictionary
     
     Return:
@@ -121,6 +168,7 @@ def event_action(event: object,
     tuple(bullet, player, running)
 
     bullet <dict[str, float]>: bullet associated data dictionary
+        * bullet["state"] <str>: bullet state
     
     player <dict[str, float]>: player associated data dictionary
     
@@ -152,6 +200,7 @@ def fix_bullet_direction(bullet, player):
     event <class 'Event'>: pygame.event.Event(), a representation of a key.
     
     bullet <dict[str, float]>: bullet associated data dictionary
+        * bullet["state"] <str>: bullet state
     
     player <dict[str, float]>: player associated data dictionary
     
@@ -159,6 +208,7 @@ def fix_bullet_direction(bullet, player):
     ----
 
     bullet <dict[str, float]>: bullet associated data dictionary
+        * bullet["state"] <str>: bullet state
   
     """    
     if bullet["state"] == "rest":
@@ -169,11 +219,33 @@ def fix_bullet_direction(bullet, player):
 
 
 def play_sound(dir):
+    """
+    Play the sound file given the directory
+
+    Parameters:
+    ----
+    dir <str>: directory
+
+    Return:
+    ----
+    None
+    """
     sound = mixer.Sound(dir)
     sound.play()
 
 
 def update_invaders_x(invaders):
+    """
+    Updates the x-coordinates of the invader by adding the x_change
+
+    Parameters:
+    ----
+    invader <dict[str, float]>: invader associated data dictionary.
+
+    Return:
+    ----
+    invader <dict[str, float]>: invader associated data dictionary.
+    """
     for invader in invaders:
         invader["x"] += invader["x_change"]
     return invaders
@@ -201,6 +273,22 @@ def bullet_movement(bullet: dict[str, float]) -> dict[str, float]:
 
 
 def game_over(invaders, invader, player):
+    """
+    Checks whether the game over condition has passed and updates the objects otherwise
+    
+    Parameters:
+    ----
+    invaders <list[dict[str, float]]>: the list of invaders ditionaries
+    invader <dict[str, float]>: invader associated data dictionary
+    player <dict[str, float]>: player associated data dictionary
+    
+    Return:
+    ----
+    invaders <list[dict[str, float]]>: the list of invaders ditionaries
+    invader <dict[str, float]>: invader associated data dictionary
+    is_game_over <bool>: boolean indicator whether the player has lost
+  
+    """      
     is_game_over = False
     if invader["y"] >= 450:
         if abs(player["x"]-invader["x"]) < 80:
@@ -211,6 +299,17 @@ def game_over(invaders, invader, player):
 
 
 def remove_invaders(invaders):
+    """
+    Removes the invader object by changing the y value of the invader objects
+
+    Parameters:
+    ----
+    invader <dict[str, float]>: invader associated data dictionary
+
+    Return:
+    ----
+    invader <dict[str, float]>: invader associated data dictionary
+    """
     for invader_ in invaders:
         invader_["y"] = 2000
         play_sound('data/explosion.wav')
@@ -219,8 +318,8 @@ def remove_invaders(invaders):
 
 def move_next_line(invader):
     """
-    Moves direction of invader when it approaches the edges of the screen.
-    Invader moves down by 1 in y-direction and flips in x-direction.
+    Moves direction of invader when it approaches the edges of the screen
+    Invader moves down by 1 in y-direction and flips in x-direction
 
     Parameters:
     -----

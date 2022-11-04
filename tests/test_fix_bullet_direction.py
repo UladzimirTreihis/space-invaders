@@ -17,10 +17,8 @@ def test_fix_bullet_direction():
         "state": "rest"
     }
     player_two = {
-        "x": 130 ,
+        "x": 130,
         "state": "rest"
     }
     assert fix_bullet_direction(bullet1, player_one)["x"] == 120
     assert fix_bullet_direction(bullet2, player_two)["x"] != 130
-
-    
